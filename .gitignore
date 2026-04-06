@@ -1,0 +1,43 @@
+# ===== Large model artifacts (multi-GB, never commit) =====
+*.gguf
+llama-android.tar.gz
+/gpu-build/
+/llama-b9442/
+/win-llama/
+
+# ===== Android / Gradle build output =====
+byoai-app/app/build/
+byoai-app/build/
+byoai-app/.gradle/
+byoai-app/app/.cxx/
+byoai-app/local.properties
+byoai-app/.idea/
+byoai-app/app/src/main/cpp/llama.cpp/
+
+# ===== Arduino build output =====
+byoai-hw/arduino/**/build/
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+
+# ===== Local databases / runtime state =====
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# ===== Screenshots / scratch =====
+*.png
+_*.txt
+e2b_out.txt
+e4b_out.txt
+prompt.txt
+
+# ===== OMC orchestration state =====
+.omc/
+
+# ===== OS =====
+Thumbs.db
+.DS_Store
