@@ -1,0 +1,10 @@
+{
+  "user_id": "hs-2026",
+  "cold_sensitive_offset": 2.5,
+  "corrections": [
+    {
+      "context": "방금 비 맞고 들어옴, 진입 3분 경과",
+      "delta": 2.5
+    }
+  ]
+}
