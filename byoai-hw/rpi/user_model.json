@@ -1,0 +1,15 @@
+{
+  "user_id": "hs-2026",
+  "prefs": {
+    "climate_offset": 2.0,
+    "light_pref": 500.0,
+    "air_max": 40
+  },
+  "corrections": [
+    {
+      "capability": "light",
+      "context": "테스트 미니룸 수동조작",
+      "delta": 150.0
+    }
+  ]
+}
