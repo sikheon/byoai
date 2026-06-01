@@ -1,84 +1,55 @@
 package kr.ac.kunsan.byoai.ui
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import kr.ac.kunsan.byoai.R
 
-// ===== BYOAI v1 neon theme =====
-// First-pass look: saturated violet/cyan neon on near-black, heavy glow.
-// (Replaced later by the calmer slate system — see redesign.)
+/* ───────────── 디자인 시스템 v2 (DESIGN.md 정본) ─────────────
+ * 단일 슬레이트블루 액센트 · luminance 위계(다크에서 표면은 밝기로 뜸) ·
+ * Space Grotesk(타이틀·수치) + Inter(본문). 금지: 네온 무지개, 골드, 순백 텍스트. */
 
-val NeonViolet = Color(0xFF7C3AED)
-val NeonCyan = Color(0xFF22D3EE)
-val NeonMagenta = Color(0xFFEC4899)
-val NeonLime = Color(0xFFA3E635)
-val NearBlack = Color(0xFF0A0A0F)
-val PanelBlack = Color(0xFF14141C)
-val PanelBlack2 = Color(0xFF1C1C28)
-val NeonText = Color(0xFFEDEDFF)
-val NeonTextDim = Color(0xFF9A9AB8)
-val NeonOk = Color(0xFF34D399)
-val NeonWarn = Color(0xFFFBBF24)
-val NeonBad = Color(0xFFF87171)
+val Bg0 = Color(0xFF0A0B0E)      // 최심부 배경
+val Bg1 = Color(0xFF111318)      // 배경 그라데이션 상단
+val Surface1 = Color(0xFF16191F) // 카드 — 배경보다 한 단 밝게 (Material 다크 elevation)
+val Surface2 = Color(0xFF1C2028) // 시트·강조 표면 — 두 단 밝게
 
-private val NeonDark = darkColorScheme(
-    primary = NeonViolet,
-    onPrimary = Color.White,
-    secondary = NeonCyan,
-    onSecondary = NearBlack,
-    tertiary = NeonMagenta,
-    background = NearBlack,
-    onBackground = NeonText,
-    surface = PanelBlack,
-    onSurface = NeonText,
-    surfaceVariant = PanelBlack2,
-    onSurfaceVariant = NeonTextDim,
-    error = NeonBad,
+val T1 = Color(0xFFEEF1F6)       // 고강조 텍스트 (순백 금지)
+val T2 = Color(0xFF9DA3B0)       // 보조
+val T3 = Color(0xFF6A7180)       // 약한 라벨
+
+val Accent = Color(0xFF86A4C8)   // 슬레이트블루 — 유일한 액센트
+val Good   = Color(0xFF79B89A)
+val Warn   = Color(0xFFC2A878)
+val Danger = Color(0xFFC88686)
+
+val Stroke   = Color(0x1FFFFFFF) // 12% 백색 보더 (엣지 하이라이트)
+val StrokeLo = Color(0x14FFFFFF) // 8% — 비강조 구분선
+
+/* variable TTF: Font(weight=...)가 API26+에서 wght 축을 자동 적용 (minSdk 31) */
+val Grotesk = FontFamily(
+    Font(R.font.space_grotesk, weight = FontWeight.Medium),
+    Font(R.font.space_grotesk, weight = FontWeight.SemiBold),
+    Font(R.font.space_grotesk, weight = FontWeight.Bold),
+)
+val Inter = FontFamily(
+    Font(R.font.inter, weight = FontWeight.Normal),
+    Font(R.font.inter, weight = FontWeight.Medium),
+    Font(R.font.inter, weight = FontWeight.SemiBold),
 )
 
-private val NeonLight = lightColorScheme(
-    primary = NeonViolet,
-    secondary = NeonCyan,
-    tertiary = NeonMagenta,
-)
-
-private val NeonType = Typography(
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Black,
-        fontSize = 30.sp,
-    ),
-    titleMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-    ),
+private val Scheme = darkColorScheme(
+    primary = Accent, onPrimary = Bg0,
+    background = Bg0, onBackground = T1,
+    surface = Surface1, onSurface = T1,
+    surfaceVariant = Surface2, outline = Stroke,
 )
 
 @Composable
 fun ByoaiTheme(content: @Composable () -> Unit) {
-    val scheme = if (isSystemInDarkTheme()) NeonDark else NeonLight
-    MaterialTheme(
-        colorScheme = scheme,
-        typography = NeonType,
-        content = content,
-    )
+    MaterialTheme(colorScheme = Scheme, content = content)
 }
